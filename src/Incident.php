@@ -54,10 +54,20 @@ class Incident extends BaseApiComponent
         return 'incidents';
     }
 
-    public function getIgnored()
+    /**
+     * Gets the elements stored in the metadata which are able to be sent to the API
+     *
+     * @return     array  The metadata
+     */
+    public function getArrayable()
     {
         return [
-            'incident_updates',
+            'name',
+            'status',
+            'wants_twitter_update',
+            'body',
+            'component_ids',
+            'deliver_notifications',
         ];
     }
 
@@ -71,8 +81,14 @@ class Incident extends BaseApiComponent
         return 'incident';
     }
 
-    public function setComponentIds(array $componentIds)
+    public function setComponentIds($componentIds)
     {
+        if(!is_array($componentIds)) {
+            $componentIds = [
+                $componentIds
+            ];
+        }
+
         $this->_metadata['component_ids'] = [
             'component_ids' => $componentIds
         ];

@@ -39,7 +39,7 @@ abstract class BaseApiComponent implements ArrayAccess, ApiRequest
      */
     public abstract function getWrapper();
 
-    public function getIgnored()
+    public function getArrayable()
     {
         return [
         ];
@@ -87,12 +87,12 @@ abstract class BaseApiComponent implements ArrayAccess, ApiRequest
     public function toApi()
     {
         $metadata = $this->getMetadata();
-        $ignored = $this->getIgnored();
+        $ignored = $this->getArrayable();
 
         $apiRequest = [];
 
         foreach($metadata as $key => $value) {
-            if(in_array($key, $ignored)) {
+            if(!in_array($key, $ignored)) {
                 continue;
             }
 

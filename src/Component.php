@@ -43,14 +43,18 @@ class Component extends BaseApiComponent
         return 'component';
     }
 
-    public function getIgnored()
+    /**
+     * Gets the elements stored in the metadata which are able to be sent to the API
+     *
+     * @return     array  The metadata
+     */
+    public function getArrayable()
     {
         return [
-            'page_id',
-            'id',
-            'position',
-            'updated_at',
-            'created_at',
+            'name',
+            'description',
+            'group_id',
+            'status',
         ];
     }
 
