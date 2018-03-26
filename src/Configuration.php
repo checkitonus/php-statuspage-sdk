@@ -16,6 +16,10 @@ class Configuration implements ArrayAccess
      */
     public function __construct($values = [])
     {
+        if(!isset($values['base_url'])) {
+            $values['base_url'] = 'https://api.statuspage.io/v1/pages';
+        }
+        
         // Ensure the data for the configuration is correct
         if(!empty($values) && is_array($values)) {
             // It is, so populate it

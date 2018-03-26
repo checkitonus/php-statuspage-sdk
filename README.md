@@ -33,8 +33,8 @@ $server = new Server([
     'base_url' => 'https://api.statuspage.io/v1/pages'
 ]);
 
-// Should return pong
-echo $server->ping();
+// Should return your first component
+echo $server->components()->first()->toApi();
 ```
 
 # API Components
@@ -54,7 +54,6 @@ use CheckItOnUs\StatusPage\Component;
 
 $server = new Server([
     'api_key' => 'API-KEY',
-    'base_url' => 'https://demo.StatusPagehq.io', // The base URL for the StatusPage installation
 ]);
 
 // Find a component based on the name
@@ -79,7 +78,6 @@ use CheckItOnUs\StatusPage\Component;
 
 $server = new Server([
     'api_key' => 'API-KEY',
-    'base_url' => 'https://demo.StatusPagehq.io', // The base URL for the StatusPage installation
 ]);
 
 // Fluent API
@@ -99,7 +97,6 @@ use CheckItOnUs\StatusPage\Component;
 
 $server = new Server([
     'api_key' => 'API-KEY',
-    'base_url' => 'https://demo.StatusPagehq.io', // The base URL for the StatusPage installation
 ]);
 
 // Fluent API
@@ -120,7 +117,6 @@ use CheckItOnUs\StatusPage\Component;
 
 $server = new Server([
     'api_key' => 'API-KEY',
-    'base_url' => 'https://demo.StatusPagehq.io', // The base URL for the StatusPage installation
 ]);
 
 // Fluent API

@@ -25,11 +25,6 @@ class Server
     private $_webRequest;
 
     /**
-     * The version of the server
-     */
-    private $_version;
-
-    /**
      * Initializes the StatusPage component
      *
      * @param      $configuration  The configuration
@@ -56,7 +51,7 @@ class Server
      *
      * @param      Configuration  $value  The value
      *
-     * @return     \CheckItOnUs\Cachet\Cachet
+     * @return     \CheckItOnUs\StatusPage\StatusPage
      */
     public function setConfiguration(Configuration $value)
     {
@@ -71,7 +66,7 @@ class Server
     /**
      * Retrieves the configuration object
      *
-     * @return     \CheckItOnUs\Cachet\Configuration  The configuration.
+     * @return     \CheckItOnUs\StatusPage\Configuration  The configuration.
      */
     public function getConfiguration()
     {
@@ -81,41 +76,11 @@ class Server
     /**
      * Retrieves the web request object
      *
-     * @return \CheckItOnUs\Cachet\Request\WebRequest
+     * @return \CheckItOnUs\StatusPage\Request\WebRequest
      */
     public function request()
     {
         return $this->_webRequest;
-    }
-
-    /**
-     * Sends a ping request to the server (verifies connectivity to the server)
-     *
-     * @ref https://docs.cachethq.io/reference#ping
-     * @return     stdClass
-     */
-    public function ping()
-    {
-        return $this->request()
-                ->get('/v1/ping')
-                ->data;
-    }
-
-    /**
-     * Gets the version of Cachet currently installed on the server
-     *
-     * @ref https://docs.cachethq.io/reference#version
-     * @return     stdClass 
-     */
-    public function version()
-    {
-        if($this->_version) {
-            return $this->_version;
-        }
-
-        return $this->_version = $this->request()
-                ->get('/v1/version')
-                ->data;    
     }
 
     /**
