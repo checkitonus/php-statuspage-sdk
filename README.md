@@ -16,7 +16,7 @@ $ composer require checkitonus/statuspage-sdk
 ```
 {
     "require": {
-        "checkitonus/StatusPage-api": "~1"
+        "checkitonus/statuspage-api": "master"
     }
 }
 ```
