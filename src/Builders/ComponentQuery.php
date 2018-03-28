@@ -17,13 +17,28 @@ class ComponentQuery extends BaseQuery
      */
     public function findById($id)
     {
-        return new Component(
-            $this->getServer(),
-            (array)$this->getServer()
-                ->request()
-                ->get(Component::getApiRootPath() . '/' . $id)
-                ->data
-        );
+        $pages = $this->getServer()
+                    ->request()
+                    ->get(Component::getApiRootPath());
+
+        foreach($pages as $page) {
+            if($page === null) {
+                return null;
+            }
+
+            $component = $page->first(function($component) use($id) {
+                return $component->id == $id;
+            });
+
+            if($component !== null) {
+                return new Component(
+                    $this->getServer(),
+                    (array)$component
+                );
+            }
+        }
+
+        return null;
     }
 
     /**

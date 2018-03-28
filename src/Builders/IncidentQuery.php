@@ -18,13 +18,24 @@ class IncidentQuery extends BaseQuery
      */
     public function findById($id)
     {
-        return new Incident(
-            $this->getServer(),
-            (array)$this->getServer()
-                ->request()
-                ->get(Incident::getApiRootPath() . '/' . $id)
-                ->data
-        );
+        $pages = $this->getServer()
+                    ->request()
+                    ->get(Incident::getApiRootPath());
+
+        foreach($pages as $page) {
+            $incident = $page->first(function($incident) use($id) {
+                return $incident->id == $id;
+            });
+
+            if($incident !== null) {
+                return new Incident(
+                    $this->getServer(),
+                    (array)$incident
+                );
+            }
+        }
+
+        return null;
     }
 
     /**
