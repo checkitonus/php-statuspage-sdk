@@ -28,6 +28,12 @@ class IncidentQuery extends BaseQuery
             });
 
             if($incident !== null) {
+                $incident = (array)$incident;
+
+                if(isset($incident['metadata'])) {
+                    unset($incident['metadata']);
+                }
+
                 return new Incident(
                     $this->getServer(),
                     (array)$incident
