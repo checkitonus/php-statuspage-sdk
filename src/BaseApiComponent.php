@@ -132,8 +132,8 @@ abstract class BaseApiComponent implements ArrayAccess, ApiRequest
                 ->request()
                 ->post($this->getApiCreateUrl(), $this->toApi());
 
-        if(isset($object->data, $object->data->id)) {
-            $this->setId($object->data->id);
+        if(isset($object->id)) {
+            $this->setId($object->id);
         }
 
         return $object;
