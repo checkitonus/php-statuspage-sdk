@@ -3,6 +3,7 @@
 namespace CheckItOnUs\StatusPage\Request;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 use CheckItOnUs\StatusPage\Configuration;
 use GuzzleHttp\Exception\ClientException;
 use CheckItOnUs\StatusPage\Request\PagedResponse;
@@ -141,7 +142,7 @@ class GuzzleRequest implements WebRequest
         ];
 
         if(!empty($data)) {
-            $headers['form_params'] = $data;
+            $headers[RequestOptions::JSON] = $data;
         }
 
         $url = implode('/', [$this->_configuration->getBaseUrl(), $this->_configuration->getPageId(), $url . '.json']);

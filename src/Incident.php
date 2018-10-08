@@ -34,7 +34,6 @@ class Incident extends BaseApiComponent
      */
     public function __construct(Server $server, array $metadata = [])
     {
-        $this->_metadata['template'] = new Template();
         $this->setStatus(self::INVESTIGATING)
             ->setNotify(true)
             ->setVisible(true)
@@ -67,6 +66,7 @@ class Incident extends BaseApiComponent
             'wants_twitter_update',
             'body',
             'component_ids',
+            'components',
             'deliver_notifications',
         ];
     }
@@ -92,6 +92,22 @@ class Incident extends BaseApiComponent
         $this->_metadata['component_ids'] = [
             'component_ids' => $componentIds
         ];
+
+        return $this;
+    }
+
+    public function setComponents($components, $value = null)
+    {
+        if(!is_array($components)) {
+            $components = [
+                $components => $value,
+            ];
+        }
+
+        $this->_metadata['components'] = [
+            'components' => $components
+        ];
+
         return $this;
     }
 }
